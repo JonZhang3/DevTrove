@@ -1,48 +1,11 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Flex, Box, Text, TextField, Kbd } from "@radix-ui/themes";
 import { Dialog } from "@/components";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import clsx from "clsx";
 import { EnterIcon } from "@/icons";
 import { useSearchState, useData } from "@/store";
-
-function SearchInput() {
-  const searching = useSearchState((state) => state.searching);
-  const searchText = useData((state) => state.searchText);
-  const setSearchText = useData((state) => state.setSearchText);
-
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (searching) {
-      inputRef.current?.focus();
-    } else {
-      inputRef.current?.blur();
-    }
-  }, [searching]);
-
-  return (
-    <TextField.Root size="3">
-      <TextField.Slot>
-        <MagnifyingGlassIcon />
-      </TextField.Slot>
-      <TextField.Input
-        ref={inputRef}
-        size="3"
-        color="gray"
-        placeholder="Search"
-        value={searchText}
-        onChange={(e) => setSearchText(e.target.value)}
-      />
-
-      <TextField.Slot>
-        <Kbd className="min-h-[1.75em]">
-          <EnterIcon />
-        </Kbd>
-      </TextField.Slot>
-    </TextField.Root>
-  );
-}
+import SearchInput from "./SearchInput";
 
 export default function Search() {
   const searching = useSearchState((state) => state.searching);
@@ -50,19 +13,23 @@ export default function Search() {
   const searchText = useData((state) => state.searchText);
   const setSearchText = useData((state) => state.setSearchText);
   const toSearch = useData((state) => state.toSearch);
+  const searchInputFocus = useSearchState((state) => state.searchInputFocus);
 
+  const [innerSearchText, setInnerSearchText] = useState(searchText);
+
+  // TODO 使用 esc 关闭 dialog 时不会触发
   const handleSearchDialogOpenChange = (open: boolean) => {
     setSearching(open);
   };
 
   const handleKeyDown = (e: KeyboardEvent) => {
-    // to search
-    if (searchText) {
+    if (searchInputFocus && innerSearchText) {
       if (["Enter", "Escape"].includes(e.key)) {
         e.preventDefault();
-        e.stopPropagation();
       }
       if (e.key === "Enter") {
+        setSearchText(innerSearchText);
+        setSearching(false);
         setTimeout(() => toSearch(), 0);
       } else if (e.key === "Escape") {
         setSearchText("");
@@ -70,7 +37,6 @@ export default function Search() {
     } else {
       if (e.key === "Escape") {
         e.preventDefault();
-        e.stopPropagation();
         setSearching(false);
       }
     }
@@ -106,12 +72,16 @@ export default function Search() {
       <Dialog
         open={searching}
         onOpenChange={handleSearchDialogOpenChange}
-        className={clsx()}
         overlayClassName="items-start pt-2"
       >
         <Flex direction="column" gap="5">
-          <SearchInput />
-          <Items onSelected={(label) => setSearchText(label)} />
+          <SearchInput
+            defaultText={innerSearchText}
+            onChange={(text) => {
+              setInnerSearchText(text);
+            }}
+          />
+          {/* <Items onSelected={(label) => setInnerSearchText(label)} /> */}
           <Operations />
         </Flex>
       </Dialog>
@@ -119,7 +89,10 @@ export default function Search() {
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function Items({ onSelected }: { onSelected?: (label: string) => void }) {
+  const focusSearchInput = useSearchState((state) => state.focusSearchInput);
+
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const items = [
     { text: "Search by tag", label: "tag:" },
@@ -132,11 +105,16 @@ function Items({ onSelected }: { onSelected?: (label: string) => void }) {
       e.stopPropagation();
     }
     if (e.key === "ArrowDown") {
+      focusSearchInput(false);
       setSelectedIndex((prev) => (prev + 1 > items.length - 1 ? 0 : prev + 1));
     } else if (e.key === "ArrowUp") {
+      focusSearchInput(false);
       setSelectedIndex((prev) => (prev - 1 < 0 ? items.length - 1 : prev - 1));
     } else if (e.key === "Enter") {
-      selectedIndex > -1 && onSelected?.(items[selectedIndex].label);
+      focusSearchInput(true);
+      const index = selectedIndex;
+      setSelectedIndex(-1);
+      index > -1 && onSelected?.(items[index].label);
     }
   };
 
@@ -186,9 +164,9 @@ function Operations() {
         </Text>
       </Flex>
       <Flex direction="row" gap="2">
-        <Kbd>esc</Kbd>
+        <Kbd>Esc</Kbd>
         <Text size="2" color="gray">
-          clear input / close
+          close
         </Text>
       </Flex>
     </Flex>

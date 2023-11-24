@@ -61,7 +61,7 @@ export default [
     package: "npm",
     code: "npm install linkifyjs",
     source: "UNREAD",
-    tags: ["tool", "text parser", "JavaScript"],
+    tags: ["tool", "text parser"],
     articles: [],
     notes: [],
   },
@@ -94,7 +94,6 @@ export default [
   },
   {
     name: "Tailwind CSS",
-    logo: "tailwindcss",
     description:
       "A utility-first CSS framework for rapidly building custom user interfaces.",
     group: "Frontend",
@@ -117,5 +116,18 @@ export default [
     package: "npm",
     source: "UNREAD",
     tags: ["syntax highlighter"],
+  },
+  {
+    name: "ProseMirror",
+    logo: "/icons/prosemirror.svg",
+    description: "A toolkit for building rich-text editors on the web.",
+    group: "Frontend",
+    language: "JS",
+    author: "ProseMirror",
+    author_github: "https://github.com/prosemirror",
+    homepage: "https://prosemirror.net",
+    package: "npm",
+    source: "UNREAD",
+    tags: ["rich-text editor"],
   },
 ] as Array<ProjectItemType>;

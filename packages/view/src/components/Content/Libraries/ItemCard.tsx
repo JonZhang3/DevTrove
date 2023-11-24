@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Flex,
   Card,
@@ -7,61 +6,16 @@ import {
   Avatar,
   Badge,
   Link,
-  IconButton,
-  HoverCard,
-  Code,
+  Separator,
 } from "@radix-ui/themes";
-import {
-  ArrowRightIcon,
-  PersonIcon,
-  HomeIcon,
-  CodeIcon,
-} from "@radix-ui/react-icons";
+import { ArrowRightIcon, PersonIcon } from "@radix-ui/react-icons";
 import type { ProjectItemType } from "data";
 import { string } from "@/utils";
-
-interface ExtraItemProps extends React.HTMLAttributes<HTMLButtonElement> {
-  href?: string;
-}
-
-// 额外信息组件
-const ExtraItem = React.forwardRef<HTMLButtonElement, ExtraItemProps>(
-  (props, ref) => {
-    const { href, children } = props;
-
-    const handleClick = () => {
-      href && window.open(href, "_blank");
-    };
-
-    return (
-      <IconButton
-        ref={ref}
-        variant="ghost"
-        className="text-[18px]"
-        onClick={handleClick}
-      >
-        {children}
-      </IconButton>
-    );
-  }
-);
-
-ExtraItem.displayName = "ExtraItem";
-
-function ExtraCode({ code }: { code: string }) {
-  return (
-    <HoverCard.Root>
-      <HoverCard.Trigger>
-        <IconButton variant="ghost" className="text-[18px]">
-          <CodeIcon />
-        </IconButton>
-      </HoverCard.Trigger>
-      <HoverCard.Content>
-        <Code>{code}</Code>
-      </HoverCard.Content>
-    </HoverCard.Root>
-  );
-}
+import { GroupIcon } from "@/icons";
+import { langWithIcons } from "data";
+import ExtraCode from "./ExtraCode";
+import Homepage from "./Homepage";
+import React from "react";
 
 export interface ItemCardProps {
   item: ProjectItemType;
@@ -72,6 +26,9 @@ export default function ItemCard({ item, onTagClick }: ItemCardProps) {
   const handleTagClick = (tag: string) => {
     onTagClick?.(tag);
   };
+  const LangIcon: React.FC<{ size?: number }> | null = item.language
+    ? langWithIcons[item.language]
+    : null;
 
   return (
     <Card className="w-full min-w-[300px]" variant="classic">
@@ -93,10 +50,8 @@ export default function ItemCard({ item, onTagClick }: ItemCardProps) {
                 {item.name}
               </Heading>
             </Flex>
-            <Flex direction="row" justify="end" gap="3" className="flex-1">
-              {item.homepage && (
-                <ExtraItem href={item.homepage}>{<HomeIcon />}</ExtraItem>
-              )}
+            <Flex direction="row" justify="end" gap="4" className="flex-1">
+              {item.homepage && <Homepage homepage={item.homepage} />}
               {item.code && <ExtraCode code={item.code} />}
             </Flex>
           </Flex>
@@ -110,6 +65,21 @@ export default function ItemCard({ item, onTagClick }: ItemCardProps) {
               <Text size="2">{item.author}</Text>
             </Link>
           )}
+          <Flex direction="row" gap="2" className="items-center">
+            {item.group && (
+              <Flex direction="row" gap="1" className="items-center">
+                <GroupIcon />
+                <Text size="2">{item.group}</Text>
+              </Flex>
+            )}
+            <Separator orientation="vertical" />
+            {LangIcon && (
+              <Flex direction="row" gap="1" className="items-center">
+                <LangIcon size={15} />
+                <Text size="2">{item.language}</Text>
+              </Flex>
+            )}
+          </Flex>
           {item.description && (
             <Text
               color="gray"

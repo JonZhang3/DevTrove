@@ -6,7 +6,7 @@ import { Theme } from "@radix-ui/themes";
 export interface DialogProps extends React.HTMLAttributes<HTMLDivElement> {
   defaultOpen?: boolean;
   open?: boolean;
-  onOpenChange?: (open: boolean) => void;
+  onOpenChange?(open: boolean): void;
   trigger?: React.ReactNode;
   title?: string;
   description?: string;

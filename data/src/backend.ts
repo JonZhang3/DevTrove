@@ -12,7 +12,7 @@ export default [
     homepage: "https://github.com/CodisLabs/codis",
     language: "Golang",
     source: "UNREAD",
-    tags: ["backend", "cache", "redis", "redis cluster", "golang", "nosql"],
+    tags: ["cache", "redis", "redis cluster", "nosql"],
     articles: [],
     notes: [],
   },
