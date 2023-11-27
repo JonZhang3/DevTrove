@@ -41,7 +41,7 @@ jobs:
         run: |
           cd ../../
           git config --global user.email "jonzhang3@163.com"
-          git config --global user.name: "Github Actions"
+          git config --global user.name "Github Actions"
           git checkout gh-pages
           git pull origin gh-pages
           cp -r dist/* .
