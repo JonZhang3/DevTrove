@@ -4,13 +4,14 @@ import { resolve } from "node:path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "/DevTrove",
   plugins: [react()],
   resolve: {
     alias: {
       "@": resolve(__dirname, "src"),
     },
   },
-  // build: {
-  //   outDir: resolve(__dirname, "web"),
-  // },
+  build: {
+    outDir: resolve(__dirname, "../../dist"),
+  },
 });

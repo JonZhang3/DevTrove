@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Flex, Box, Text, TextField, Kbd } from "@radix-ui/themes";
+import { Flex, Text, TextField, Kbd } from "@radix-ui/themes";
 import { Dialog } from "@/components";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import clsx from "clsx";
@@ -90,60 +90,60 @@ export default function Search() {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function Items({ onSelected }: { onSelected?: (label: string) => void }) {
-  const focusSearchInput = useSearchState((state) => state.focusSearchInput);
+// function Items({ onSelected }: { onSelected?: (label: string) => void }) {
+//   const focusSearchInput = useSearchState((state) => state.focusSearchInput);
 
-  const [selectedIndex, setSelectedIndex] = useState(-1);
-  const items = [
-    { text: "Search by tag", label: "tag:" },
-    { text: "Search by programming languages", label: "lang:" },
-  ];
+//   const [selectedIndex, setSelectedIndex] = useState(-1);
+//   const items = [
+//     { text: "Search by tag", label: "tag:" },
+//     { text: "Search by programming languages", label: "lang:" },
+//   ];
 
-  const handleKeyDown = (e: KeyboardEvent) => {
-    if (["ArrowDown", "ArrowUp", "Enter"].includes(e.key)) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-    if (e.key === "ArrowDown") {
-      focusSearchInput(false);
-      setSelectedIndex((prev) => (prev + 1 > items.length - 1 ? 0 : prev + 1));
-    } else if (e.key === "ArrowUp") {
-      focusSearchInput(false);
-      setSelectedIndex((prev) => (prev - 1 < 0 ? items.length - 1 : prev - 1));
-    } else if (e.key === "Enter") {
-      focusSearchInput(true);
-      const index = selectedIndex;
-      setSelectedIndex(-1);
-      index > -1 && onSelected?.(items[index].label);
-    }
-  };
+//   const handleKeyDown = (e: KeyboardEvent) => {
+//     if (["ArrowDown", "ArrowUp", "Enter"].includes(e.key)) {
+//       e.preventDefault();
+//       e.stopPropagation();
+//     }
+//     if (e.key === "ArrowDown") {
+//       focusSearchInput(false);
+//       setSelectedIndex((prev) => (prev + 1 > items.length - 1 ? 0 : prev + 1));
+//     } else if (e.key === "ArrowUp") {
+//       focusSearchInput(false);
+//       setSelectedIndex((prev) => (prev - 1 < 0 ? items.length - 1 : prev - 1));
+//     } else if (e.key === "Enter") {
+//       focusSearchInput(true);
+//       const index = selectedIndex;
+//       setSelectedIndex(-1);
+//       index > -1 && onSelected?.(items[index].label);
+//     }
+//   };
 
-  const handleClick = (index: number) => {
-    setSelectedIndex(index);
-    index > -1 && onSelected?.(items[index].label);
-  };
+//   const handleClick = (index: number) => {
+//     setSelectedIndex(index);
+//     index > -1 && onSelected?.(items[index].label);
+//   };
 
-  useEffect(() => {
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  });
+//   useEffect(() => {
+//     document.addEventListener("keydown", handleKeyDown);
+//     return () => document.removeEventListener("keydown", handleKeyDown);
+//   });
 
-  return (
-    <Flex direction="column" gap="1">
-      {items.map((item, index) => (
-        <Box
-          className={clsx("p-2 rounded-1 cursor-pointer", {
-            "bg-gray-3": selectedIndex === index,
-          })}
-          onClick={() => handleClick(index)}
-          key={index}
-        >
-          <Text size="3">{item.text}</Text>
-        </Box>
-      ))}
-    </Flex>
-  );
-}
+//   return (
+//     <Flex direction="column" gap="1">
+//       {items.map((item, index) => (
+//         <Box
+//           className={clsx("p-2 rounded-1 cursor-pointer", {
+//             "bg-gray-3": selectedIndex === index,
+//           })}
+//           onClick={() => handleClick(index)}
+//           key={index}
+//         >
+//           <Text size="3">{item.text}</Text>
+//         </Box>
+//       ))}
+//     </Flex>
+//   );
+// }
 
 function Operations() {
   return (
