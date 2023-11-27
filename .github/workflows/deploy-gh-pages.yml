@@ -39,9 +39,6 @@ jobs:
           cd packages/view && pnpm run build
       - name: Deploy to GitHub Pages
         run: |
-          pwd
-          ls
-          cd ../../
           git config --global user.email "jonzhang3@163.com"
           git config --global user.name "Github Actions"
           git checkout gh-pages
