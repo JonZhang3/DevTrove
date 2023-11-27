@@ -43,7 +43,7 @@ jobs:
           git config --global user.name "Github Actions"
           git fetch origin gh-pages:gh-pages
           git checkout gh-pages
-          cp -r dist/* .
+          rsync -a --delete dist/ .
           git add -A
           git commit -m "Update GitHub Pages deployment"
           git push origin gh-pages
