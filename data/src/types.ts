@@ -4,7 +4,7 @@ export type Language = (typeof languages)[number];
 
 export type Group = (typeof groups)[number];
 
-export interface ProjectItemType {
+export interface LibraryItemType {
   name: string;
   logo?: string;
   language?: Language;

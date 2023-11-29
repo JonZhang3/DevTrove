@@ -1,8 +1,9 @@
 {
-  "name": "view",
   "private": true,
   "version": "0.0.1",
   "type": "module",
+  "author": "JonZhang3 <jonzhang3@163.com>",
+  "license": "Apache-2.0",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build --emptyOutDir",
@@ -17,6 +18,7 @@
     "@radix-ui/themes": "^2.0.1",
     "clsx": "^2.0.0",
     "data": "workspace:*",
+    "icons": "workspace:*",
     "lucide-react": "^0.292.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

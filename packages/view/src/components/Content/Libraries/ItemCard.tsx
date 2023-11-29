@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Flex,
   Card,
@@ -9,16 +10,16 @@ import {
   Separator,
 } from "@radix-ui/themes";
 import { ArrowRightIcon, PersonIcon } from "@radix-ui/react-icons";
-import type { ProjectItemType } from "data";
+import type { LibraryItemType } from "data";
 import { string } from "@/utils";
 import { GroupIcon } from "@/icons";
 import { langWithIcons } from "data";
 import ExtraCode from "./ExtraCode";
 import Homepage from "./Homepage";
-import React from "react";
+import { DynamicIcon } from "icons";
 
 export interface ItemCardProps {
-  item: ProjectItemType;
+  item: LibraryItemType;
   onTagClick?: (tag: string) => void;
 }
 
@@ -40,12 +41,13 @@ export default function ItemCard({ item, onTagClick }: ItemCardProps) {
               gap="2"
               className="max-w-[50%] overflow-hidden"
             >
-              <Avatar
+              <ItemAvatar logo={item.logo} name={item.name} />
+              {/* <Avatar
                 src={item.logo}
                 fallback={item.name.charAt(0)}
                 color="gray"
                 highContrast
-              />
+              /> */}
               <Heading size="4" className="truncate">
                 {item.name}
               </Heading>
@@ -120,5 +122,18 @@ export default function ItemCard({ item, onTagClick }: ItemCardProps) {
         </Flex>
       </Flex>
     </Card>
+  );
+}
+
+function ItemAvatar({ logo, name }: { logo?: string; name: string }) {
+  return (
+    <Avatar
+      src={logo}
+      fallback={
+        <DynamicIcon name={logo} size="100%" fallback={() => name.charAt(0)} />
+      }
+      color="gray"
+      highContrast
+    />
   );
 }

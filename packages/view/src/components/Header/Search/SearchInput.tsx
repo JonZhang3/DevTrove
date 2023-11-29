@@ -55,7 +55,7 @@ export default function SearchInput({
         ref={inputRef}
         size="3"
         color="gray"
-        placeholder="Search"
+        placeholder="Actions"
         value={searchText}
         onChange={handleOnChange}
       />

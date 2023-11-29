@@ -1,11 +1,11 @@
-import * as LangIcons from "./icons/langs/index";
+import { Icons } from "icons";
 
 export const langWithIcons = {
-  Java: LangIcons.JavaIcon,
-  JS: LangIcons.JSIcon,
-  Golang: LangIcons.GolangIcon,
-  Rust: LangIcons.RustIcon,
-  Python: LangIcons.PythonIcon,
+  Java: Icons.JavaIcon,
+  JS: Icons.JavaScriptIcon,
+  Golang: Icons.GolangIcon,
+  Rust: Icons.RustIcon,
+  Python: Icons.PythonIcon,
 } as { [key: string]: (props: object) => JSX.Element };
 
 export const languages = Object.keys(langWithIcons);

@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { Flex, Text, TextField, Kbd } from "@radix-ui/themes";
+import { Flex, Text, Kbd } from "@radix-ui/themes";
 import { Dialog } from "@/components";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import clsx from "clsx";
 import { EnterIcon } from "@/icons";
 import { useSearchState, useData } from "@/store";
 import SearchInput from "./SearchInput";
+import { DynamicIcon } from "icons";
 
 export default function Search() {
   const searching = useSearchState((state) => state.searching);
@@ -56,18 +57,16 @@ export default function Search() {
         className={clsx(
           "w-[50%] min-w-[400px] px-2 py-1 bg-gray-2",
           "select-none rounded-1 cursor-pointer",
-          "border border-gray-4",
-          "hover:bg-gray-4"
+          "border border-gray-3",
+          "hover:bg-gray-3"
         )}
         onClick={() => setSearching(true)}
       >
         <MagnifyingGlassIcon />
         <Text color="gray" size="2">
-          Search
+          Quick Action
         </Text>
-        <TextField.Slot>
-          <Kbd className="min-h-[1.75em]">/</Kbd>
-        </TextField.Slot>
+        <Kbd className="min-h-[1.75em]">/</Kbd>
       </Flex>
       <Dialog
         open={searching}
@@ -81,7 +80,7 @@ export default function Search() {
               setInnerSearchText(text);
             }}
           />
-          {/* <Items onSelected={(label) => setInnerSearchText(label)} /> */}
+          <Items onSelected={(label) => setInnerSearchText(label)} />
           <Operations />
         </Flex>
       </Dialog>
@@ -90,60 +89,64 @@ export default function Search() {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-// function Items({ onSelected }: { onSelected?: (label: string) => void }) {
-//   const focusSearchInput = useSearchState((state) => state.focusSearchInput);
+function Items({ onSelected }: { onSelected?: (label: string) => void }) {
+  const focusSearchInput = useSearchState((state) => state.focusSearchInput);
 
-//   const [selectedIndex, setSelectedIndex] = useState(-1);
-//   const items = [
-//     { text: "Search by tag", label: "tag:" },
-//     { text: "Search by programming languages", label: "lang:" },
-//   ];
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+  const items = [
+    { text: "Search NPM packages", label: "npm:", icon: "NpmIcon" },
+    { text: "Search Maven packages", label: "mvn:", icon: "MavenIcon" },
+    { text: "Search Rust crate", label: "cargo:", icon: "RustIcon" },
+  ];
 
-//   const handleKeyDown = (e: KeyboardEvent) => {
-//     if (["ArrowDown", "ArrowUp", "Enter"].includes(e.key)) {
-//       e.preventDefault();
-//       e.stopPropagation();
-//     }
-//     if (e.key === "ArrowDown") {
-//       focusSearchInput(false);
-//       setSelectedIndex((prev) => (prev + 1 > items.length - 1 ? 0 : prev + 1));
-//     } else if (e.key === "ArrowUp") {
-//       focusSearchInput(false);
-//       setSelectedIndex((prev) => (prev - 1 < 0 ? items.length - 1 : prev - 1));
-//     } else if (e.key === "Enter") {
-//       focusSearchInput(true);
-//       const index = selectedIndex;
-//       setSelectedIndex(-1);
-//       index > -1 && onSelected?.(items[index].label);
-//     }
-//   };
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (["ArrowDown", "ArrowUp", "Enter"].includes(e.key)) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    if (e.key === "ArrowDown") {
+      focusSearchInput(false);
+      setSelectedIndex((prev) => (prev + 1 > items.length - 1 ? 0 : prev + 1));
+    } else if (e.key === "ArrowUp") {
+      focusSearchInput(false);
+      setSelectedIndex((prev) => (prev - 1 < 0 ? items.length - 1 : prev - 1));
+    } else if (e.key === "Enter") {
+      focusSearchInput(true);
+      const index = selectedIndex;
+      setSelectedIndex(-1);
+      index > -1 && onSelected?.(items[index].label);
+    }
+  };
 
-//   const handleClick = (index: number) => {
-//     setSelectedIndex(index);
-//     index > -1 && onSelected?.(items[index].label);
-//   };
+  const handleClick = (index: number) => {
+    setSelectedIndex(index);
+    index > -1 && onSelected?.(items[index].label);
+  };
 
-//   useEffect(() => {
-//     document.addEventListener("keydown", handleKeyDown);
-//     return () => document.removeEventListener("keydown", handleKeyDown);
-//   });
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  });
 
-//   return (
-//     <Flex direction="column" gap="1">
-//       {items.map((item, index) => (
-//         <Box
-//           className={clsx("p-2 rounded-1 cursor-pointer", {
-//             "bg-gray-3": selectedIndex === index,
-//           })}
-//           onClick={() => handleClick(index)}
-//           key={index}
-//         >
-//           <Text size="3">{item.text}</Text>
-//         </Box>
-//       ))}
-//     </Flex>
-//   );
-// }
+  return (
+    <Flex direction="column" gap="1">
+      {items.map((item, index) => (
+        <Flex
+          direction="row"
+          gap="2"
+          className={clsx("p-2 rounded-1 cursor-pointer items-center", {
+            "bg-gray-3": selectedIndex === index,
+          })}
+          onClick={() => handleClick(index)}
+          key={index}
+        >
+          <DynamicIcon name={item.icon} size={20} />
+          <Text size="3">{item.text}</Text>
+        </Flex>
+      ))}
+    </Flex>
+  );
+}
 
 function Operations() {
   return (

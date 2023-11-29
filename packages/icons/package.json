@@ -1,8 +1,8 @@
 {
-  "name": "data",
+  "name": "icons",
+  "private": true,
   "version": "0.0.1",
   "description": "",
-  "private": true,
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,9 +10,6 @@
   "keywords": [],
   "author": "JonZhang3 <jonzhang3@163.com>",
   "license": "Apache-2.0",
-  "dependencies": {
-    "icons": "workspace:*"
-  },
   "peerDependencies": {
     "react": "^16.8.6"
   },

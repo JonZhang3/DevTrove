@@ -1,4 +1,4 @@
-import { ProjectItemType } from "./types";
+import { LibraryItemType } from "../types";
 
 export default [
   {
@@ -16,4 +16,4 @@ export default [
     articles: [],
     notes: [],
   },
-] as Array<ProjectItemType>;
+] as Array<LibraryItemType>;

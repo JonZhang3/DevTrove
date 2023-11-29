@@ -1,4 +1,4 @@
-import { ProjectItemType } from "./types";
+import { LibraryItemType } from "../types";
 
 export default [
   {
@@ -35,7 +35,7 @@ export default [
   },
   {
     name: "Lucide",
-    logo: "	https://lucide.dev/logo.light.svg",
+    logo: "https://lucide.dev/logo.light.svg",
     description: "Beautiful & consistent icons",
     group: "Frontend",
     language: "JS",
@@ -119,7 +119,7 @@ export default [
   },
   {
     name: "ProseMirror",
-    logo: "/icons/prosemirror.svg",
+    logo: "ProseMirrorIcon",
     description: "A toolkit for building rich-text editors on the web.",
     group: "Frontend",
     language: "JS",
@@ -130,4 +130,32 @@ export default [
     source: "UNREAD",
     tags: ["rich-text editor"],
   },
-] as Array<ProjectItemType>;
+  {
+    name: "Tabler Icons",
+    logo: "https://raw.githubusercontent.com/tabler/tabler/dev/src/static/logo-small.svg",
+    description:
+      "A set of 4872 free MIT-licensed high-quality SVG icons for you to use in your web projects.",
+    group: "Frontend",
+    language: "JS",
+    author: "Tabler",
+    author_github: "https://github.com/tabler",
+    homepage: "https://tabler-icons.io",
+    package: "npm",
+    source: "UNREAD",
+    tags: ["icons", "svg"],
+  },
+  {
+    name: "Turbo",
+    logo: "https://github.com/vercel/turbo/blob/main/docs/public/images/favicon-light/apple-touch-icon.png?raw=true",
+    description:
+      "Turbo is an incremental bundler and build system optimized for JavaScript and TypeScript, written in Rust.",
+    group: "Frontend",
+    language: "Rust",
+    author: "Vercel",
+    author_github: "https://github.com/vercel",
+    homepage: "https://turbo.build",
+    package: "npm",
+    source: "UNREAD",
+    tags: ["Build System", "bundler"],
+  },
+] as Array<LibraryItemType>;

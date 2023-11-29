@@ -1,11 +1,14 @@
-import LangIconProps from "./types";
+import { IconProps } from "../types";
+import defaultProps from "../defaultProps";
+
+// Copy from https://devicon.dev/
 
 function PureJavaIcon({
-  size,
+  size = defaultProps.size,
   color = "currentColor",
   pure,
   ...rest
-}: LangIconProps) {
+}: IconProps) {
   return (
     <svg viewBox="0 0 128 128" width={`${size}`} height={`${size}`} {...rest}>
       <path
@@ -16,7 +19,12 @@ function PureJavaIcon({
   );
 }
 
-function ColorfulJavaIcon({ size, color, pure, ...rest }: LangIconProps) {
+function ColorfulJavaIcon({
+  size = defaultProps.size,
+  color,
+  pure,
+  ...rest
+}: IconProps) {
   return (
     <svg viewBox="0 0 128 128" width={`${size}`} height={`${size}`} {...rest}>
       <path
@@ -43,6 +51,6 @@ function ColorfulJavaIcon({ size, color, pure, ...rest }: LangIconProps) {
   );
 }
 
-export default function JavaIcon({ pure = true, ...props }: LangIconProps) {
+export default function JavaIcon({ pure = true, ...props }: IconProps) {
   return pure ? <PureJavaIcon {...props} /> : <ColorfulJavaIcon {...props} />;
 }

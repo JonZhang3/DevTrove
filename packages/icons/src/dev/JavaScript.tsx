@@ -1,11 +1,15 @@
-import LangIconProps from "./types";
+import { IconProps } from "../types";
+import defaultProps from "../defaultProps";
+
+// Copy from https://devicon.dev/
 
 function PureJsIcon({
-  size,
-  color = "currentColor",
+  size = defaultProps.size,
+  color = defaultProps.color,
+  strokeWidth = defaultProps.strokeWidth,
   pure,
   ...rest
-}: LangIconProps) {
+}: IconProps) {
   return (
     <svg viewBox="0 0 128 128" width={`${size}`} height={`${size}`} {...rest}>
       <path
@@ -16,7 +20,13 @@ function PureJsIcon({
   );
 }
 
-function ColorfulJsIcon({ size, color, pure, ...rest }: LangIconProps) {
+function ColorfulJsIcon({
+  size = defaultProps.size,
+  color = defaultProps.color,
+  strokeWidth = defaultProps.strokeWidth,
+  pure,
+  ...rest
+}: IconProps) {
   return (
     <svg viewBox="0 0 128 128" width={`${size}`} height={`${size}`} {...rest}>
       <path fill="#F0DB4F" d="M1.408 1.408h125.184v125.185H1.408z"></path>
@@ -28,6 +38,6 @@ function ColorfulJsIcon({ size, color, pure, ...rest }: LangIconProps) {
   );
 }
 
-export default function JsIcon({ pure = true, ...props }: LangIconProps) {
+export default function JsIcon({ pure = true, ...props }: IconProps) {
   return pure ? <PureJsIcon {...props} /> : <ColorfulJsIcon {...props} />;
 }

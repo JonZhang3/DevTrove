@@ -10,7 +10,7 @@ type Action = {
   focusSearchInput: (focus: boolean) => void;
 };
 
-const useSearchState = create<State & Action>((set) => ({
+const useSearchState = create<State & Action>()((set) => ({
   searching: false,
   searchInputFocus: false,
   setSearching: (search) =>

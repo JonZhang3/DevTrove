@@ -10,6 +10,19 @@ importers:
 
   data:
     dependencies:
+      icons:
+        specifier: workspace:*
+        version: link:../packages/icons
+      react:
+        specifier: ^16.8.6
+        version: 16.8.6
+    devDependencies:
+      '@types/react':
+        specifier: ^18.2.37
+        version: 18.2.37
+
+  packages/icons:
+    dependencies:
       react:
         specifier: ^16.8.6
         version: 16.8.6
@@ -41,6 +54,9 @@ importers:
       data:
         specifier: workspace:*
         version: link:../../data
+      icons:
+        specifier: workspace:*
+        version: link:../icons
       lucide-react:
         specifier: ^0.292.0
         version: 0.292.0(react@18.2.0)
