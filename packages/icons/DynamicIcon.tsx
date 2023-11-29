@@ -9,9 +9,9 @@ export interface DynamicIconProps extends IconProps {
 export default function DynamicIcon(props: DynamicIconProps) {
   const { name, fallback, ...rest } = props;
   const Cmp = useMemo<FC<IconProps>>(() => {
-    let result = Icons[name];
+    let result = name && Icons[name];
     if (!result) {
-      result = fallback || "";
+      result = fallback || (() => null);
     }
     return result;
   }, [name]);
