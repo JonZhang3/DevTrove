@@ -50,9 +50,9 @@ function ColorfulMavenIcon({
           gradientTransform="matrix(-0.023, -0.116, -0.116, 0.023, 79.68, -889.484)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#f69923" />
-          <stop offset="0.312" stop-color="#f79a23" />
-          <stop offset="0.838" stop-color="#e97826" />
+          <stop offset="0" stopColor="#f69923" />
+          <stop offset="0.312" stopColor="#f79a23" />
+          <stop offset="0.838" stopColor="#e97826" />
         </linearGradient>
         <linearGradient
           id="b"
@@ -63,10 +63,10 @@ function ColorfulMavenIcon({
           gradientTransform="matrix(-0.023, -0.116, -0.116, 0.023, 79.68, -889.484)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0.323" stop-color="#9e2064" />
-          <stop offset="0.63" stop-color="#c92037" />
-          <stop offset="0.751" stop-color="#cd2335" />
-          <stop offset="1" stop-color="#e97826" />
+          <stop offset="0.323" stopColor="#9e2064" />
+          <stop offset="0.63" stopColor="#c92037" />
+          <stop offset="0.751" stopColor="#cd2335" />
+          <stop offset="1" stopColor="#e97826" />
         </linearGradient>
         <linearGradient
           id="c"
@@ -77,10 +77,10 @@ function ColorfulMavenIcon({
           gradientTransform="matrix(-0.023, -0.116, -0.116, 0.023, 79.68, -889.484)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#282662" />
-          <stop offset="0.095" stop-color="#662e8d" />
-          <stop offset="0.788" stop-color="#9f2064" />
-          <stop offset="0.949" stop-color="#cd2032" />
+          <stop offset="0" stopColor="#282662" />
+          <stop offset="0.095" stopColor="#662e8d" />
+          <stop offset="0.788" stopColor="#9f2064" />
+          <stop offset="0.949" stopColor="#cd2032" />
         </linearGradient>
         <linearGradient
           id="d"

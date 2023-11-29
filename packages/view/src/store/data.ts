@@ -15,7 +15,7 @@ const tags = Object.entries(
 });
 
 type State = {
-  searchText: string;
+  // searchText: string;
   searchData: Array<LibraryItemType>;
   selectedTags: Array<string>;
   selectedLangs: Array<string>;
@@ -24,8 +24,8 @@ type State = {
 
 type Action = {
   setSrearchData(data: LibraryItemType[]): void;
-  setSearchText: (text: string) => void;
-  toSearch: () => void;
+  // setSearchText(text: string): void;
+  toSearch(searchText?: string): void;
   selectTag(tag: string): void;
   selectLang(lang: string): void;
   selectGroup(group: string): void;
@@ -33,7 +33,7 @@ type Action = {
 };
 
 const useData = create<State & Action>()((set, get) => ({
-  searchText: "",
+  // searchText: "",
   searchData: libraryData,
   selectedTags: [],
   selectedLangs: [],
@@ -43,13 +43,13 @@ const useData = create<State & Action>()((set, get) => ({
     set({ searchData: data });
   },
 
-  setSearchText: (text: string) => {
-    set({ searchText: text });
-    search(text, get().selectedTags, get().selectedGroups, get().selectedLangs);
-  },
-  toSearch: () => {
+  // setSearchText: (text: string) => {
+  //   set({ searchText: text });
+  //   search(text, get().selectedTags, get().selectedGroups, get().selectedLangs);
+  // },
+  toSearch: (searchTest: string) => {
     search(
-      get().searchText,
+      searchTest,
       get().selectedTags,
       get().selectedGroups,
       get().selectedLangs
@@ -60,21 +60,21 @@ const useData = create<State & Action>()((set, get) => ({
       ? get().selectedTags.filter((t) => t !== tag)
       : [...get().selectedTags, tag];
     set({ selectedTags: tags });
-    search(get().searchText, tags, get().selectedGroups, get().selectedLangs);
+    search("", tags, get().selectedGroups, get().selectedLangs);
   },
   selectLang: (lang: string) => {
     const langs = get().selectedLangs.includes(lang)
       ? get().selectedLangs.filter((t) => t !== lang)
       : [...get().selectedLangs, lang];
     set({ selectedLangs: langs });
-    search(get().searchText, get().selectedTags, get().selectedGroups, langs);
+    search("", get().selectedTags, get().selectedGroups, langs);
   },
   selectGroup: (group: string) => {
     const groups = get().selectedGroups.includes(group)
       ? get().selectedGroups.filter((t) => t !== group)
       : [...get().selectedGroups, group];
     set({ selectedGroups: groups });
-    search(get().searchText, get().selectedTags, groups, get().selectedLangs);
+    search("", get().selectedTags, groups, get().selectedLangs);
   },
   clearFilters: () => {
     set({
@@ -82,7 +82,7 @@ const useData = create<State & Action>()((set, get) => ({
       selectedLangs: [],
       selectedGroups: [],
     });
-    search(get().searchText, [], [], []);
+    search("", [], [], []);
   },
 }));
 

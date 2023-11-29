@@ -11,12 +11,10 @@ import { DynamicIcon } from "icons";
 export default function Search() {
   const searching = useSearchState((state) => state.searching);
   const setSearching = useSearchState((state) => state.setSearching);
-  const searchText = useData((state) => state.searchText);
-  const setSearchText = useData((state) => state.setSearchText);
   const toSearch = useData((state) => state.toSearch);
   const searchInputFocus = useSearchState((state) => state.searchInputFocus);
 
-  const [innerSearchText, setInnerSearchText] = useState(searchText);
+  const [innerSearchText, setInnerSearchText] = useState("");
 
   // TODO 使用 esc 关闭 dialog 时不会触发
   const handleSearchDialogOpenChange = (open: boolean) => {
@@ -29,11 +27,10 @@ export default function Search() {
         e.preventDefault();
       }
       if (e.key === "Enter") {
-        setSearchText(innerSearchText);
         setSearching(false);
-        setTimeout(() => toSearch(), 0);
+        setTimeout(() => toSearch(innerSearchText), 0);
       } else if (e.key === "Escape") {
-        setSearchText("");
+        setInnerSearchText("");
       }
     } else {
       if (e.key === "Escape") {

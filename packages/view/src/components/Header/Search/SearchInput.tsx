@@ -10,7 +10,7 @@ export interface SearchInputProps {
 }
 
 export default function SearchInput({
-  defaultText = "",
+  defaultText,
   onChange,
 }: SearchInputProps) {
   const searching = useSearchState((state) => state.searching);
@@ -35,16 +35,16 @@ export default function SearchInput({
   }, [searching]);
 
   useEffect(() => {
+    setSearchText(defaultText);
+  }, [defaultText]);
+
+  useEffect(() => {
     if (searchInputFocus) {
       inputRef.current?.focus();
     } else {
       inputRef.current?.blur();
     }
   }, [searchInputFocus]);
-
-  useEffect(() => {
-    setSearchText(defaultText);
-  }, [defaultText]);
 
   return (
     <TextField.Root size="3">
