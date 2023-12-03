@@ -128,7 +128,7 @@ export default function ItemCard({ item, onTagClick }: ItemCardProps) {
 function ItemAvatar({ logo, name }: { logo?: string; name: string }) {
   return (
     <Avatar
-      src={logo}
+      src={logo && logo.startsWith("http") ? logo : undefined}
       fallback={
         <DynamicIcon name={logo} size="100%" fallback={() => name.charAt(0)} />
       }

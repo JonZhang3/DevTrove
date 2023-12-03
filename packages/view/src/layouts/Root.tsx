@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { Flex } from "@radix-ui/themes";
 import { Theme } from "@radix-ui/themes";
-import { Header, Content } from "@/components";
+import { Outlet } from "react-router-dom";
+import { Header } from "@/components";
 import { useSearchState, useTheme } from "@/store";
 
 function App() {
@@ -29,7 +30,7 @@ function App() {
     >
       <Flex className="h-full w-full" direction="column">
         <Header />
-        <Content />
+        <Outlet />
       </Flex>
     </Theme>
   );

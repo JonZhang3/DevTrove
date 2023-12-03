@@ -1,6 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import clsx from "clsx";
+import { NavLink, useLocation } from "react-router-dom";
+
+const items = [
+  {
+    value: "libraries",
+    title: "Libraries",
+    href: "/",
+  },
+  {
+    value: "tech-stack",
+    title: "Tech Stack",
+    href: "/tech-stack",
+  },
+];
 
 export interface MenusProps {
   value?: string;
@@ -8,16 +22,7 @@ export interface MenusProps {
 }
 
 export default function Menus({ value, onValueChange }: MenusProps) {
-  const items = [
-    {
-      value: "libraries",
-      title: "Libraries",
-    },
-    {
-      value: "tech-stack",
-      title: "Tech Stack",
-    },
-  ];
+  const location = useLocation();
   const [active, setActive] = useState(value || items[0].value);
 
   const handleItemClick = (value: string) => {
@@ -27,6 +32,13 @@ export default function Menus({ value, onValueChange }: MenusProps) {
     setActive(value);
     onValueChange?.(value);
   };
+
+  useEffect(() => {
+    const item = items.find((item) => item.href === location.pathname);
+    if (item) {
+      setActive(item.value);
+    }
+  }, [location]);
 
   return (
     <NavigationMenu.Root
@@ -41,7 +53,7 @@ export default function Menus({ value, onValueChange }: MenusProps) {
             key={item.value}
             onClick={() => handleItemClick(item.value)}
           >
-            <NavigationMenuLink active={active === item.value}>
+            <NavigationMenuLink href={item.href} active={active === item.value}>
               {item.title}
             </NavigationMenuLink>
           </NavigationMenu.Item>
@@ -52,20 +64,25 @@ export default function Menus({ value, onValueChange }: MenusProps) {
 }
 
 interface NavigationMenuLinkProps {
+  route?: boolean;
+  href?: string;
   title?: string;
   children?: React.ReactNode;
   active?: boolean;
 }
 
 function NavigationMenuLink({
+  route = true,
+  href,
   title,
   children,
   active = false,
 }: NavigationMenuLinkProps) {
   const child = title ? title : children;
+  const Root = route ? NavLink : NavigationMenu.Link;
 
   return (
-    <NavigationMenu.Link
+    <Root
       className={clsx(
         "menu-list-item h-full flex items-center cursor-pointer",
         "relative px-4 hover:bg-gray-3",
@@ -77,8 +94,9 @@ function NavigationMenuLink({
         },
         "after:transition-all after:duration-300 after:ease-in-out"
       )}
+      to={href!}
     >
       {child}
-    </NavigationMenu.Link>
+    </Root>
   );
 }
