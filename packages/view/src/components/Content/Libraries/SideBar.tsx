@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { Flex, Grid, Text, Heading, Badge, Button } from "@radix-ui/themes";
 import * as Accordion from "@radix-ui/react-accordion";
-import { ChevronDownIcon, TrashIcon } from "@radix-ui/react-icons";
+import {
+  ChevronDownIcon,
+  TrashIcon,
+  MagnifyingGlassIcon,
+} from "@radix-ui/react-icons";
 import clsx from "clsx";
 import { groups, languages, langWithIcons } from "data";
 import { tags, useData } from "@/store";
@@ -24,6 +28,7 @@ export default function SideBar({
   width = "250px",
   className,
 }: SideBarWidthProps) {
+  const searchText = useData((state) => state.searchText);
   const selectedGroups = useData((state) => state.selectedGroups);
   const selectGroup = useData((state) => state.selectGroup);
   const selectedLangs = useData((state) => state.selectedLangs);
@@ -33,7 +38,11 @@ export default function SideBar({
   const clearFilters = useData((state) => state.clearFilters);
 
   const filterCount =
-    selectedGroups.length + selectedLangs.length + selectedTags.length;
+    selectedGroups.length +
+    selectedLangs.length +
+    selectedTags.length +
+    (searchText ? 1 : 0);
+  console.log(searchText.length, filterCount);
 
   const [opend, setOpendValue] = useState<Array<string>>([
     "groups",
@@ -111,10 +120,25 @@ export default function SideBar({
       </Accordion.Root>
       <Flex
         direction="row"
-        className={clsx("h-[24px] items-center justify-end", {
+        gap="1"
+        className={clsx("h-[24px] items-center justify-between", {
           hidden: filterCount === 0,
         })}
       >
+        <div
+          className={clsx(
+            "flex-1 flex gap-1 flex-row items-center overflow-hidden",
+            {
+              "opacity-0": !searchText,
+            }
+          )}
+        >
+          <MagnifyingGlassIcon />
+          <Text size="1" className="flex-1 truncate">
+            {searchText}
+          </Text>
+        </div>
+
         <Button
           size="1"
           variant="ghost"

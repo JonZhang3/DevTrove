@@ -76,5 +76,5 @@ export function search(
 
     return check;
   });
-  useData.setState({ searchData: result });
+  useData.setState({ searchData: result, searchText: keyword });
 }

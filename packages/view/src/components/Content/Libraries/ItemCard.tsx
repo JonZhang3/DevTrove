@@ -83,11 +83,7 @@ export default function ItemCard({ item, onTagClick }: ItemCardProps) {
             )}
           </Flex>
           {item.description && (
-            <Text
-              color="gray"
-              size="2"
-              className="max-h-10 inline-block overflow-hidden text-ellipsis"
-            >
+            <Text color="gray" size="2" className="truncate-2-lines">
               {item.description}
             </Text>
           )}

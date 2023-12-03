@@ -15,7 +15,7 @@ const tags = Object.entries(
 });
 
 type State = {
-  // searchText: string;
+  searchText: string;
   searchData: Array<LibraryItemType>;
   selectedTags: Array<string>;
   selectedLangs: Array<string>;
@@ -24,7 +24,7 @@ type State = {
 
 type Action = {
   setSrearchData(data: LibraryItemType[]): void;
-  // setSearchText(text: string): void;
+  setSearchText(text: string): void;
   toSearch(searchText?: string): void;
   selectTag(tag: string): void;
   selectLang(lang: string): void;
@@ -33,7 +33,7 @@ type Action = {
 };
 
 const useData = create<State & Action>()((set, get) => ({
-  // searchText: "",
+  searchText: "",
   searchData: libraryData,
   selectedTags: [],
   selectedLangs: [],
@@ -43,10 +43,9 @@ const useData = create<State & Action>()((set, get) => ({
     set({ searchData: data });
   },
 
-  // setSearchText: (text: string) => {
-  //   set({ searchText: text });
-  //   search(text, get().selectedTags, get().selectedGroups, get().selectedLangs);
-  // },
+  setSearchText: (text: string) => {
+    set({ searchText: text });
+  },
   toSearch: (searchTest: string) => {
     search(
       searchTest,
@@ -78,6 +77,7 @@ const useData = create<State & Action>()((set, get) => ({
   },
   clearFilters: () => {
     set({
+      searchText: "",
       selectedTags: [],
       selectedLangs: [],
       selectedGroups: [],
