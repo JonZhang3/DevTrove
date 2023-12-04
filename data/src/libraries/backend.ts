@@ -57,4 +57,18 @@ export default [
     articles: [],
     notes: [],
   },
+  {
+    name: "mysqlburst",
+    description:
+      "A mysql pressure test tool that makes large quantity of short connections.",
+    group: "Backend",
+    author: "Xie Zhenye",
+    author_github: "https://github.com/xiezhenye",
+    homepage: "https://github.com/xiezhenye/mysqlburst",
+    language: "Golang",
+    source: "UNREAD",
+    tags: ["mysql", "pressure test"],
+    articles: [],
+    notes: [],
+  },
 ] as Array<LibraryItemType>;

@@ -8,7 +8,7 @@ export const langWithIcons = {
   Python: Icons.PythonIcon,
 } as { [key: string]: (props: object) => JSX.Element };
 
-export const languages = Object.keys(langWithIcons);
+export const languages = ["Java", "JS", "Golang", "Rust", "Python"] as const;
 
 export const groups = [
   "Frontend",
