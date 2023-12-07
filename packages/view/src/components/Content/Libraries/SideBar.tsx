@@ -42,7 +42,6 @@ export default function SideBar({
     selectedLangs.length +
     selectedTags.length +
     (searchText ? 1 : 0);
-  console.log(searchText.length, filterCount);
 
   const [opend, setOpendValue] = useState<Array<string>>([
     "groups",
