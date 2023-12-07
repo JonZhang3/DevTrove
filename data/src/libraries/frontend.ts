@@ -205,4 +205,19 @@ export default [
     articles: [],
     notes: [],
   },
+  {
+    name: "stylex",
+    logo: "StylexIcon",
+    description:
+      "StyleX is a JavaScript library for defining styles for optimized user interfaces.",
+    group: "Frontend",
+    language: "JS",
+    author: "Meta",
+    author_github: "https://github.com/facebook",
+    homepage: "https://stylexjs.com",
+    package: "npm",
+    source: "UNREAD",
+    tags: ["style", "css"],
+    articles: [],
+  },
 ] as Array<LibraryItemType>;

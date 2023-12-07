@@ -5,6 +5,7 @@ import { default as VestIcon } from "./src/Vest";
 import { default as ReactFlowIcon } from "./src/ReactFlow";
 import { default as UnoCSSIcon } from "./src/UnoCSS";
 import { default as TablerIconsIcon } from "./src/TablerIcons";
+import { default as StylexIcon } from "./src/Stylex";
 
 import { IconProps } from "./src/types";
 
@@ -16,4 +17,5 @@ export const Icons = {
   ReactFlowIcon,
   UnoCSSIcon,
   TablerIconsIcon,
+  StylexIcon,
 } as { [key: string]: React.FC<IconProps> };
