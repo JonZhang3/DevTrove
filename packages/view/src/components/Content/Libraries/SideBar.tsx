@@ -94,13 +94,7 @@ export default function SideBar({
         <AccordionItem value="tags">
           <AccordionTrigger title="Tags" icon={<TagsIcon />} />
           <AccordionContent>
-            <Flex
-              wrap="wrap"
-              gap="2"
-              align="center"
-              justify="start"
-              className="max-h-[250px] overflow-auto"
-            >
+            <Flex wrap="wrap" gap="2" align="center" justify="start">
               {tags.map((t, index) => (
                 <Badge
                   key={index}
