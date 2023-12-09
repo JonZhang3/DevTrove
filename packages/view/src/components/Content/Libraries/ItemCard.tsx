@@ -8,6 +8,7 @@ import {
   Badge,
   Link,
   Separator,
+  Tooltip,
 } from "@radix-ui/themes";
 import { ArrowRightIcon, PersonIcon } from "@radix-ui/react-icons";
 import type { LibraryItemType } from "data";
@@ -42,12 +43,6 @@ export default function ItemCard({ item, onTagClick }: ItemCardProps) {
               className="max-w-[50%] overflow-hidden"
             >
               <ItemAvatar logo={item.logo} name={item.name} />
-              {/* <Avatar
-                src={item.logo}
-                fallback={item.name.charAt(0)}
-                color="gray"
-                highContrast
-              /> */}
               <Heading size="4" className="truncate">
                 {item.name}
               </Heading>
@@ -83,9 +78,11 @@ export default function ItemCard({ item, onTagClick }: ItemCardProps) {
             )}
           </Flex>
           {item.description && (
-            <Text color="gray" size="2" className="truncate-2-lines">
-              {item.description}
-            </Text>
+            <Tooltip content={item.description} className="max-w-xs">
+              <Text color="gray" size="2" className="truncate-2-lines">
+                {item.description}
+              </Text>
+            </Tooltip>
           )}
           {item.tags && (
             <Flex direction="row" gap="2" wrap="wrap">
