@@ -236,4 +236,19 @@ export default [
     articles: [],
     notes: [],
   },
+  {
+    name: "react virtualized",
+    description:
+      "React components for efficiently rendering large lists and tabular data.",
+    group: "Frontend",
+    language: "JS",
+    author: "Brian Vaughn",
+    author_github: "https://github.com/bvaughn",
+    homepage: "https://github.com/bvaughn/react-virtualized",
+    package: "npm",
+    source: "UNREAD",
+    tags: ["React", "virtualization"],
+    articles: [],
+    notes: [],
+  },
 ] as Array<LibraryItemType>;
