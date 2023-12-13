@@ -1,8 +1,10 @@
-import { languages, groups } from "./common";
+import { languages, groups, tags } from "./common";
 
 export type Language = (typeof languages)[number];
 
 export type Group = (typeof groups)[number];
+
+export type Tag = (typeof tags)[number];
 
 export interface LibraryItemType {
   name: string;
@@ -16,7 +18,7 @@ export interface LibraryItemType {
   source?: "READED" | "UNREAD";
   package?: "npm" | "maven";
   code?: string;
-  tags: Array<string>;
+  tags: Array<Tag>;
   articles: Array<string>;
   notes: Array<string>;
 }
