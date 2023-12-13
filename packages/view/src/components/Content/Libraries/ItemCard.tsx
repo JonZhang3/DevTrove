@@ -17,6 +17,7 @@ import { GroupIcon } from "@/icons";
 import { langWithIcons } from "data";
 import ExtraCode from "./ExtraCode";
 import Homepage from "./Homepage";
+import ExtraShare from "./ExtraShare";
 import { DynamicIcon } from "icons";
 
 export interface ItemCardProps {
@@ -50,6 +51,7 @@ export default function ItemCard({ item, onTagClick }: ItemCardProps) {
             <Flex direction="row" justify="end" gap="4" className="flex-1">
               {item.homepage && <Homepage homepage={item.homepage} />}
               {item.code && <ExtraCode code={item.code} />}
+              <ExtraShare item={item} />
             </Flex>
           </Flex>
           {item.author && (
