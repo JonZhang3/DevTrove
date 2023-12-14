@@ -13,6 +13,10 @@ function rustCrateSearch(text: string) {
   window.open(`https://crates.io/search?q=${text}`, "_blank");
 }
 
+function pythonSearch(text: string) {
+  window.open(`https://pypi.org/search/?q=${text}`, "_blank");
+}
+
 export function search(
   keyword: string,
   tags: string[],
@@ -31,6 +35,10 @@ export function search(
     } else if (keyword.startsWith("cargo:")) {
       const searchText = keyword.substring(6);
       rustCrateSearch(searchText);
+      return;
+    } else if (keyword.startsWith("python:")) {
+      const searchText = keyword.substring(7);
+      pythonSearch(searchText);
       return;
     }
   }

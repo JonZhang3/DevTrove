@@ -94,6 +94,7 @@ function Items({ onSelected }: { onSelected?: (label: string) => void }) {
     { text: "Search NPM packages", label: "npm:", icon: "NpmIcon" },
     { text: "Search Maven packages", label: "mvn:", icon: "MavenIcon" },
     { text: "Search Rust crate", label: "cargo:", icon: "RustIcon" },
+    { text: "Search Python packages", label: "python:", icon: "PythonIcon" },
   ];
 
   const handleKeyDown = (e: KeyboardEvent) => {
