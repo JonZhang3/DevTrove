@@ -49,4 +49,6 @@ export const tags = [
   "Errors",
   "Log",
   "Test",
+  "Http",
+  "Json",
 ] as const;
