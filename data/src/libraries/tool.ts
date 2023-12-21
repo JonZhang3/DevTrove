@@ -57,4 +57,32 @@ export default [
     articles: [],
     notes: [],
   },
+  {
+    name: "thiserror",
+    description:
+      "This library provides a convenient derive macro for the standard library's std::error::Error trait.",
+    group: "Tool",
+    author: "David Tolnay",
+    author_github: "https://github.com/dtolnay",
+    homepage: "https://github.com/dtolnay/thiserror",
+    language: "Rust",
+    source: "UNREAD",
+    tags: ["Errors"],
+    articles: [],
+    notes: [],
+  },
+  {
+    name: "Anyhow",
+    description:
+      "This library provides anyhow::Error, a trait object based error type for easy idiomatic error handling in Rust applications.",
+    group: "Tool",
+    author: "David Tolnay",
+    author_github: "https://github.com/dtolnay",
+    homepage: "https://github.com/dtolnay/anyhow",
+    language: "Rust",
+    source: "UNREAD",
+    tags: ["Errors"],
+    articles: [],
+    notes: [],
+  },
 ] as LibraryItemType[];
