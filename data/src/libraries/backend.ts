@@ -134,4 +134,18 @@ export default [
     articles: [],
     notes: [],
   },
+  {
+    name: "num",
+    description:
+      "A collection of numeric types and traits for Rust, including bigint, complex, rational, range iterators, generic integers, and more!",
+    group: "Backend",
+    author: "rust-num",
+    author_github: "https://github.com/rust-num",
+    homepage: "https://github.com/rust-num/num",
+    language: "Rust",
+    source: "UNREAD",
+    tags: ["Algorithms"],
+    articles: [],
+    notes: [],
+  },
 ] as Array<LibraryItemType>;

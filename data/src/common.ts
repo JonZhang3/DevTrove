@@ -51,4 +51,5 @@ export const tags = [
   "Test",
   "Http",
   "Json",
+  "Algorithms",
 ] as const;
