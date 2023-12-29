@@ -53,4 +53,6 @@ export const tags = [
   "Json",
   "Algorithms",
   "Network",
+  "Thread",
+  "Async",
 ] as const;
