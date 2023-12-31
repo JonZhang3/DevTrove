@@ -15,6 +15,7 @@ export const groups = [
   "Backend",
   "DevOps",
   "Database",
+  "BigData",
   "Tool",
 ] as const;
 
@@ -55,4 +56,5 @@ export const tags = [
   "Network",
   "Thread",
   "Async",
+  "Web",
 ] as const;

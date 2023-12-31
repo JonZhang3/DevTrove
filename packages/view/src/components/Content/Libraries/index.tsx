@@ -28,7 +28,7 @@ export default function Content() {
             {searchData.map((item, index) => (
               <ItemCard
                 item={item}
-                key={index}
+                key={index + item.name}
                 onTagClick={(tag) => selectTag(tag)}
               />
             ))}
