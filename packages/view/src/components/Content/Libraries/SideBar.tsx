@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Flex, Grid, Text, Heading, Badge, Button } from "@radix-ui/themes";
+import {
+  Flex,
+  Grid,
+  Text,
+  Heading,
+  Badge,
+  Button,
+  TextField,
+} from "@radix-ui/themes";
 import * as Accordion from "@radix-ui/react-accordion";
 import {
   ChevronDownIcon,
@@ -37,6 +45,8 @@ export default function SideBar({
   const selectTag = useData((state) => state.selectTag);
   const clearFilters = useData((state) => state.clearFilters);
 
+  const [innerTags, setInnerTags] = useState<[string, number][]>(tags);
+
   const filterCount =
     selectedGroups.length +
     selectedLangs.length +
@@ -50,6 +60,19 @@ export default function SideBar({
   ]);
   const handleOpendChange = (value: Array<string>) => {
     setOpendValue(value);
+  };
+
+  const handleSeatchTagsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (value) {
+      // filter tags, ignore case
+      const newTags = tags.filter((t) =>
+        t[0].toLowerCase().includes(value.toLowerCase())
+      );
+      setInnerTags(newTags);
+    } else {
+      setInnerTags(tags);
+    }
   };
 
   return (
@@ -94,19 +117,30 @@ export default function SideBar({
         <AccordionItem value="tags">
           <AccordionTrigger title="Tags" icon={<TagsIcon />} />
           <AccordionContent>
-            <Flex wrap="wrap" gap="2" align="center" justify="start">
-              {tags.map((t, index) => (
-                <Badge
-                  key={index}
-                  variant={selectedTags.includes(t[0]) ? "solid" : "soft"}
-                  color="gray"
-                  highContrast
-                  className="cursor-pointer"
-                  onClick={() => selectTag(t[0])}
-                >
-                  {`${string.capitalize(t[0])} (${t[1]})`}
-                </Badge>
-              ))}
+            <Flex direction="column" gap="2">
+              <TextField.Root size="1" className="w-full">
+                <TextField.Slot>
+                  <MagnifyingGlassIcon height="16" width="16" />
+                </TextField.Slot>
+                <TextField.Input
+                  onChange={handleSeatchTagsChange}
+                  placeholder="Search the tags…"
+                />
+              </TextField.Root>
+              <Flex wrap="wrap" gap="2" align="center" justify="start">
+                {innerTags.map((t, index) => (
+                  <Badge
+                    key={index}
+                    variant={selectedTags.includes(t[0]) ? "solid" : "soft"}
+                    color="gray"
+                    highContrast
+                    className="cursor-pointer"
+                    onClick={() => selectTag(t[0])}
+                  >
+                    {`${string.capitalize(t[0])} (${t[1]})`}
+                  </Badge>
+                ))}
+              </Flex>
             </Flex>
           </AccordionContent>
         </AccordionItem>
