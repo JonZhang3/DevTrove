@@ -3,20 +3,20 @@ import ItemCard from "./ItemCard";
 // import Toolbar from "./Toolbar";
 import SideBar from "./SideBar";
 import { useData } from "@/store";
-import clsx from "clsx";
 
 export default function Content() {
   const searchData = useData((state) => state.searchData);
   const selectTag = useData((state) => state.selectTag);
-  const sideBarWidth = "250px";
+  const sideBarWidth = 250;
 
   return (
     <div className="flex-1 p-4 overflow-auto relative">
-      <div className="flex gap-3 flex-row w-[80%] mx-auto">
-        <div style={{ width: sideBarWidth }} className={clsx("h-full")}>
-          <SideBar width={sideBarWidth} />
-        </div>
-        <div className="flex-1">
+      <div className="flex gap-3 flex-row w-[80%] mx-auto relative">
+        <SideBar width={sideBarWidth + "px"} className="h-full fixed" />
+        <div
+          className="flex-1"
+          style={{ paddingLeft: `${sideBarWidth + 22}px` }}
+        >
           <Grid
             columns={{
               xl: "3",

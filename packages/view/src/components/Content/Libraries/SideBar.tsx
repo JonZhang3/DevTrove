@@ -76,7 +76,11 @@ export default function SideBar({
   };
 
   return (
-    <Flex direction="column" gap="2" className={className}>
+    <Flex
+      direction="column"
+      gap="2"
+      className={clsx(className, "overflow-auto pb-2 pr-3")}
+    >
       <Accordion.Root
         type="multiple"
         value={opend}
@@ -178,6 +182,30 @@ export default function SideBar({
           </Text>
         </Button>
       </Flex>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
+      <div>1</div>
     </Flex>
   );
 }
