@@ -57,4 +57,5 @@ export const tags = [
   "Thread",
   "Async",
   "Web",
+  "Channel",
 ] as const;
