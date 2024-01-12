@@ -293,4 +293,18 @@ export default [
     articles: [],
     notes: [],
   },
+  {
+    name: "VisActor",
+    description: "Narrative-Oriented Intelligent Visualization Solutions.",
+    group: "Frontend",
+    language: "JS",
+    author: "VisActor",
+    author_github: "https://github.com/VisActor",
+    homepage: "https://visactor.io",
+    package: "npm",
+    source: "UNREAD",
+    tags: ["Visualization"],
+    articles: [],
+    notes: [],
+  }
 ] as Array<LibraryItemType>;

@@ -58,4 +58,5 @@ export const tags = [
   "Async",
   "Web",
   "Channel",
+  "Visualization",
 ] as const;
