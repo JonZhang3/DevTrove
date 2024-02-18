@@ -306,5 +306,17 @@ export default [
     tags: ["Visualization"],
     articles: [],
     notes: [],
+  },
+  {
+    name: "sql-formatter",
+    description: "SQL Formatter is a JavaScript library for pretty-printing SQL queries.",
+    group: "Frontend",
+    language: "JS",
+    author: "sql-formatter-org",
+    author_github: "https://github.com/sql-formatter-org",
+    homepage: "https://github.com/sql-formatter-org/sql-formatter",
+    package: "npm",
+    source: "UNREAD",
+    tags: ["Editor", "SQL"],
   }
 ] as Array<LibraryItemType>;

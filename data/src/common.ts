@@ -59,4 +59,5 @@ export const tags = [
   "Web",
   "Channel",
   "Visualization",
+  "SQL",
 ] as const;
