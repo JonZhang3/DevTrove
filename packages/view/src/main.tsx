@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "@/layouts/Root";
 import Libraries from "@/pages/Libraries";
+import Stacks from "@/pages/Stacks";
 import "@/styles";
 
 const router = createBrowserRouter(
@@ -14,7 +15,7 @@ const router = createBrowserRouter(
         { path: "/", element: <Libraries /> },
         {
           path: "/tech-stack",
-          element: <div className="text-center text-5">Comming soon!!!</div>,
+          element: <Stacks />,
         },
       ],
     },

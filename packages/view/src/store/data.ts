@@ -20,6 +20,7 @@ type State = {
   selectedTags: Array<string>;
   selectedLangs: Array<string>;
   selectedGroups: Array<string>;
+  selectedStack: string;
 };
 
 type Action = {
@@ -29,6 +30,7 @@ type Action = {
   selectTag(tag: string): void;
   selectLang(lang: string): void;
   selectGroup(group: string): void;
+  selectStack(stack: string): void;
   clearFilters(): void;
 };
 
@@ -38,6 +40,7 @@ const useData = create<State & Action>()((set, get) => ({
   selectedTags: [],
   selectedLangs: [],
   selectedGroups: [],
+  selectedStack: "React",
 
   setSrearchData: (data) => {
     set({ searchData: data });
@@ -83,6 +86,12 @@ const useData = create<State & Action>()((set, get) => ({
       selectedGroups: [],
     });
     search("", [], [], []);
+  },
+  selectStack: (stack: string) => {
+    if (get().selectedStack === stack) {
+      return;
+    }
+    set({ selectedStack: stack });
   },
 }));
 

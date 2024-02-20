@@ -5,3 +5,5 @@ export { default as PythonIcon } from "./Python";
 export { default as RustIcon } from "./Rust";
 export { default as NpmIcon } from "./Npm";
 export { default as MavenIcon } from "./Maven";
+export { default as ReactIcon } from "./React";
+export { default as VueIcon } from "./Vue";

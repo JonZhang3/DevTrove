@@ -10,6 +10,16 @@ export const langWithIcons = {
 
 export const languages = ["Java", "JS", "Golang", "Rust", "Python"] as const;
 
+export const techStackWithIcons = {
+  React: Icons.ReactIcon,
+  Vue: Icons.VueIcon,
+  Java: Icons.JavaIcon,
+  Rust: Icons.RustIcon,
+  BigData: Icons.JavaIcon,
+} as { [key: string]: (props: object) => JSX.Element };
+
+export const techStacks = ["React", "Vue", "Java", "Rust", "BigData"];
+
 export const groups = [
   "Frontend",
   "Backend",

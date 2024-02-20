@@ -12,3 +12,11 @@ export function shareToX(title: string, desc: string, url: string) {
 export function copyToClipboard(text: string) {
   copy(text);
 }
+
+// 格式化 Github stars
+export function formatStars(stars: number) {
+  if (stars > 1000) {
+    return (stars / 1000).toFixed(1) + "k";
+  }
+  return stars;
+}

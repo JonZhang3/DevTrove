@@ -31,7 +31,6 @@ export interface SideBarWidthProps {
   className?: string;
 }
 
-// 条件可以同时存在
 export default function SideBar({
   width = "250px",
   className,

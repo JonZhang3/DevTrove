@@ -14,6 +14,6 @@ export default function DynamicIcon(props: DynamicIconProps) {
       result = fallback || (() => null);
     }
     return result;
-  }, [name]);
+  }, [name, fallback]);
   return <Cmp {...rest} />;
 }

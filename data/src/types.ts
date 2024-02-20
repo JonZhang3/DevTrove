@@ -19,6 +19,12 @@ export interface LibraryItemType {
   package?: "npm" | "maven";
   code?: string;
   tags: Array<Tag>;
-  articles: Array<string>;
-  notes: Array<string>;
+  articles?: Array<string>;
+  notes?: Array<string>;
+  [key: string]: any;
+}
+
+export interface TechStackType {
+  stack: Array<{ title: string; key: string }>;
+  [key: string]: Array<LibraryItemType> | Array<{ title: string; key: string }>;
 }

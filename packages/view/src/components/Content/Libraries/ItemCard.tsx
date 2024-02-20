@@ -4,7 +4,6 @@ import {
   Card,
   Heading,
   Text,
-  Avatar,
   Badge,
   Link,
   Separator,
@@ -18,7 +17,7 @@ import { langWithIcons } from "data";
 import ExtraCode from "./ExtraCode";
 import Homepage from "./Homepage";
 import ExtraShare from "./ExtraShare";
-import { DynamicIcon } from "icons";
+import ItemAvatar from "@/components/ItemAvatar";
 
 export interface ItemCardProps {
   item: LibraryItemType;
@@ -117,18 +116,5 @@ export default function ItemCard({ item, onTagClick }: ItemCardProps) {
         </Flex>
       </Flex>
     </Card>
-  );
-}
-
-function ItemAvatar({ logo, name }: { logo?: string; name: string }) {
-  return (
-    <Avatar
-      src={logo && logo.startsWith("http") ? logo : undefined}
-      fallback={
-        <DynamicIcon name={logo} size="100%" fallback={() => name.charAt(0)} />
-      }
-      color="gray"
-      highContrast
-    />
   );
 }
