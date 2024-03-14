@@ -6,6 +6,7 @@ import bigdata from "./src/libraries/bigdata";
 
 import { techStacks } from "./src/common";
 import ReactStack from "./src/stack/react";
+import BigDataStack from "./src/stack/bigdata";
 import { TechStackType } from "./src/types";
 
 export * from "./src/common";
@@ -21,4 +22,5 @@ export const libraryData = [
 
 export const tectStackData = {
   React: ReactStack,
+  BigData: BigDataStack,
 } as { [key: (typeof techStacks)[number]]: TechStackType };

@@ -8,10 +8,13 @@ import {
   Text,
 } from "@radix-ui/themes";
 import type { LibraryItemType } from "data";
+import { techStackFeatures } from "data";
+// import { DynamicIcon } from "icons";
 import clsx from "clsx";
 import ItemAvatar from "@/components/ItemAvatar";
 import { HomeIcon, StarIcon, Component1Icon } from "@radix-ui/react-icons";
 import { formatStars } from "@/utils/utils";
+import { DynamicIcon } from "icons";
 
 export interface StackGroupProps {
   title: string;
@@ -48,8 +51,8 @@ export default function StackGroup({ title, isLast, stacks }: StackGroupProps) {
 
 function Item({ data }: { data: LibraryItemType }) {
   return (
-    <Card className="w-full min-w-[300px] px-2" variant="classic">
-      <Flex direction="column">
+    <Card className="w-full min-w-[300px] relative" variant="classic">
+      <Flex direction="column" className="px-2">
         <Flex direction="row" className="flex-1">
           <Flex direction="column">
             <ItemAvatar logo={data.logo} name={data.name} />
@@ -57,9 +60,19 @@ function Item({ data }: { data: LibraryItemType }) {
               {data.name}
             </Heading>
           </Flex>
-          <Flex direction="row" className="flex-1" justify="end">
-            <Grid columns="2"></Grid>
-          </Flex>
+          {data.features && (
+            <Flex direction="row" className="flex-1" justify="end">
+              <Grid columns="2" gapX="1">
+                {Object.keys(data.features).map((feature, index) => (
+                  <FeatureItem
+                    featureKey={feature as keyof typeof techStackFeatures}
+                    value={data.features[feature]}
+                    key={index}
+                  />
+                ))}
+              </Grid>
+            </Flex>
+          )}
         </Flex>
         <Flex direction="row" className="py-2" gap="4">
           <Tooltip content="Go to Homepage" delayDuration={100}>
@@ -106,30 +119,51 @@ function Item({ data }: { data: LibraryItemType }) {
           </Flex>
         )}
       </Flex>
+      {data.skill && (
+        <Tooltip
+          content={`${data.skill.percent}%${
+            data.skill.desc ? "|" + data.skill.desc : ""
+          }`}
+        >
+          <div className="h-[8px] w-full absolute bottom-0 left-0 bg-gray-3 cursor-pointer">
+            <div
+              className="h-full bg-accent-12"
+              style={{ width: `${data.skill.percent}%` }}
+            ></div>
+          </div>
+        </Tooltip>
+      )}
     </Card>
   );
 }
 
-// function FeatureItem({
-//   icon: Icon,
-//   title,
-//   desc,
-// }: {
-//   icon: React.FC;
-//   title: string;
-//   desc?: string;
-// }) {
-//   const child = (
-//     <Button variant="ghost" size="1">
-//       <Icon />
-//       {title}
-//     </Button>
-//   );
-//   return desc ? (
-//     <Tooltip content={desc} delayDuration={100}>
-//       {child}
-//     </Tooltip>
-//   ) : (
-//     child
-//   );
-// }
+function FeatureItem({
+  featureKey,
+  value,
+}: {
+  featureKey: keyof typeof techStackFeatures;
+  value: boolean | string;
+}) {
+  const { title, icon, desc } = techStackFeatures[featureKey];
+  let text: string = title;
+  if (typeof value === "string") {
+    text = value;
+  }
+  const child = (
+    <Flex
+      gap="1"
+      align="center"
+      className="text-1 cursor-pointer hover:bg-gray-3 p-[2px] rounded-[4px] h-6 overflow-hidden"
+    >
+      <DynamicIcon name={icon ? icon : "FeatherIcon"} />
+      {text}
+    </Flex>
+  );
+  return desc ? (
+    <Tooltip content={desc} delayDuration={100}>
+      {child}
+    </Tooltip>
+  ) : (
+    child
+  );
+}

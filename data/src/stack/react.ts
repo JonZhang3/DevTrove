@@ -6,6 +6,7 @@ export default {
     { title: "State Management", key: "states" },
     { title: "Router", key: "routers" },
     { title: "Testing", key: "testings" },
+    { title: "Build Tools", key: "buildTools" },
   ],
   uis: [
     {
@@ -34,6 +35,9 @@ export default {
         url: "https://github.com/reduxjs/react-redux",
         stars: 23162,
       },
+      features: {
+        ReducerBased: true,
+      },
     },
     {
       name: "Valtio",
@@ -44,6 +48,9 @@ export default {
       github: {
         url: "https://github.com/pmndrs/valtio",
         stars: 8156,
+      },
+      features: {
+        MutableBased: true,
       },
     },
     {
@@ -56,6 +63,9 @@ export default {
         url: "https://github.com/pmndrs/jotai",
         stars: 16656,
       },
+      features: {
+        AtomBased: true,
+      },
     },
     {
       name: "Recoil",
@@ -66,6 +76,9 @@ export default {
       github: {
         url: "https://github.com/facebookexperimental/Recoil",
         stars: 19354,
+      },
+      features: {
+        AtomBased: true,
       },
     },
     {
@@ -79,6 +92,9 @@ export default {
         url: "https://github.com/pmndrs/zustand",
         stars: 40318,
       },
+      features: {
+        ReducerBased: true,
+      },
     },
     {
       name: "Mobx",
@@ -89,6 +105,9 @@ export default {
       github: {
         url: "https://github.com/mobxjs/mobx",
         stars: 27047,
+      },
+      features: {
+        MutableBased: true,
       },
     },
   ],
@@ -119,6 +138,22 @@ export default {
         stars: 43331,
       },
       features: {},
+    },
+  ],
+  buildTools: [
+    {
+      name: "Vite",
+      logo: "https://vitejs.dev/logo.svg",
+      homepage: "https://vitejs.dev",
+      description: "Next Generation Frontend Tooling.",
+      tags: [],
+      github: {
+        url: "https://github.com/vitejs/vite",
+        stars: 63471,
+      },
+      features: {
+        
+      },
     },
   ],
 } as TechStackType;

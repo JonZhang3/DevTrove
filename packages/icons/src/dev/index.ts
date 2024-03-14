@@ -7,3 +7,4 @@ export { default as NpmIcon } from "./Npm";
 export { default as MavenIcon } from "./Maven";
 export { default as ReactIcon } from "./React";
 export { default as VueIcon } from "./Vue";
+export { default as BigDataIcon } from "./BigData";
