@@ -139,6 +139,15 @@ export default {
       },
       features: {},
     },
+    {
+      name: "MochaJS",
+    },
+    {
+      name: "Jasmine",
+    },
+    {
+      name: "Puppeteer",
+    }
   ],
   buildTools: [
     {
@@ -151,9 +160,45 @@ export default {
         url: "https://github.com/vitejs/vite",
         stars: 63471,
       },
-      features: {
-        
+      features: {},
+    },
+    {
+      name: "Webpack",
+      logo: "https://webpack.js.org/assets/icon-square-big.svg",
+      homepage: "https://webpack.js.org",
+      description:
+        "Webpack is a module bundler. Its main purpose is to bundle JavaScript files for usage in a browser, yet it is also capable of transforming, bundling, or packaging just about any resource or asset.",
+      tags: [],
+      github: {
+        url: "https://github.com/webpack/webpack",
+        stars: 64061,
       },
+      features: {},
+    },
+    {
+      name: "Rollup",
+      logo: "https://rollupjs.org/rollup-logo.svg",
+      homepage: "https://rollupjs.org/",
+      description:
+        "The JavaScript module bundler.Compile small pieces of code into something larger and more complex.",
+      tags: [],
+      github: {
+        url: "https://github.com/rollup/rollup",
+        stars: 24680,
+      },
+      features: {},
+    },
+    {
+      name: "EsBuild",
+      logo: "https://esbuild.github.io/favicon.svg",
+      homepage: "https://esbuild.github.io",
+      description: "An extremely fast bundler for the web.",
+      tags: [],
+      github: {
+        url: "https://github.com/evanw/esbuild",
+        stars: 24680,
+      },
+      features: {},
     },
   ],
 } as TechStackType;

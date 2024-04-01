@@ -1,12 +1,16 @@
 import { create } from "zustand";
-import { libraryData } from "data";
+import { libraryData, groups, Group, languages, Language } from "data";
 import { array } from "@/utils";
 import { search } from "@/service/search";
 import type { LibraryItemType } from "data";
 
 // all unique tags
 const tags = Object.entries(
-  array.count(libraryData.flatMap((item) => item.tags))
+  array.count(
+    libraryData.flatMap((item) => item.tags),
+    (tag) =>
+      !groups.includes(tag as Group) && !languages.includes(tag as Language)
+  )
 ).sort((a, b) => {
   if (a[1] === b[1]) {
     return a[0].localeCompare(b[0]);

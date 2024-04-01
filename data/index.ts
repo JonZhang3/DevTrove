@@ -3,6 +3,7 @@ import backend from "./src/libraries/backend";
 import tool from "./src/libraries/tool";
 import database from "./src/libraries/database";
 import bigdata from "./src/libraries/bigdata";
+import ai from "./src/libraries/ai";
 
 import { techStacks } from "./src/common";
 import ReactStack from "./src/stack/react";
@@ -18,6 +19,7 @@ export const libraryData = [
   ...tool,
   ...database,
   ...bigdata,
+  ...ai,
 ];
 
 export const tectStackData = {

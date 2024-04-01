@@ -53,34 +53,36 @@ export function search(
   }
   const result = libraryData.filter((item) => {
     let check = true;
-    if (keyword.startsWith("tag:")) {
-      const searchTag = keyword.substring(4);
-      if (searchTag) {
-        check =
-          check &&
-          item.tags.some((t) =>
-            t.toLowerCase().includes(searchTag.toLowerCase())
-          );
-      }
-    } else if (keyword.startsWith("lang:")) {
-      const searchLang = keyword.substring(5);
-      if (searchLang) {
-        check =
-          check &&
-          !!item.language?.toLowerCase().includes(searchLang.toLowerCase());
-      }
-    } else if (keyword) {
+    // if (keyword.startsWith("tag:")) {
+    //   const searchTag = keyword.substring(4);
+    //   if (searchTag) {
+    //     check =
+    //       check &&
+    //       item.tags.some((t) =>
+    //         t.toLowerCase().includes(searchTag.toLowerCase())
+    //       );
+    //   }
+    // } else if (keyword.startsWith("lang:")) {
+    //   const searchLang = keyword.substring(5);
+    //   if (searchLang) {
+    //     check =
+    //       check &&
+    //       !!item.language?.toLowerCase().includes(searchLang.toLowerCase());
+    //   }
+    // } else
+    if (keyword) {
       check = check && item.name.toLowerCase().includes(keyword.toLowerCase());
     }
-    if (check && tags.length > 0) {
-      check = check && item.tags.some((t) => tags.includes(t));
+    const allTags = [...tags, ...groups, ...langs];
+    if (check && allTags.length > 0) {
+      check = check && item.tags.some((t) => allTags.includes(t));
     }
-    if (check && groups.length > 0) {
-      check = check && !!item.group && groups.includes(item.group);
-    }
-    if (check && langs.length > 0) {
-      check = check && !!item.language && langs.includes(item.language);
-    }
+    // if (check && groups.length > 0) {
+    //   check = check && !!item.group && groups.includes(item.group);
+    // }
+    // if (check && langs.length > 0) {
+    //   check = check && !!item.language && langs.includes(item.language);
+    // }
 
     return check;
   });

@@ -13,7 +13,7 @@ import { ArrowRightIcon, PersonIcon } from "@radix-ui/react-icons";
 import type { LibraryItemType } from "data";
 import { string } from "@/utils";
 import { GroupIcon } from "@/icons";
-import { langWithIcons } from "data";
+import { langWithIcons, groups, languages } from "data";
 import ExtraCode from "./ExtraCode";
 import Homepage from "./Homepage";
 import ExtraShare from "./ExtraShare";
@@ -28,8 +28,21 @@ export default function ItemCard({ item, onTagClick }: ItemCardProps) {
   const handleTagClick = (tag: string) => {
     onTagClick?.(tag);
   };
-  const LangIcon: React.FC<{ size?: number }> | null = item.language
-    ? langWithIcons[item.language]
+
+  const group: string[] = [];
+  let language = "";
+  const tags: Array<string> = [];
+  item.tags.forEach((tag) => {
+    if (groups.includes(tag)) {
+      group.push(tag);
+    } else if (languages.includes(tag)) {
+      language = tag;
+    } else {
+      tags.push(tag);
+    }
+  });
+  const LangIcon: React.FC<{ size?: number }> | null = language
+    ? langWithIcons[language]
     : null;
 
   return (
@@ -64,17 +77,21 @@ export default function ItemCard({ item, onTagClick }: ItemCardProps) {
             </Link>
           )}
           <Flex direction="row" gap="2" className="items-center">
-            {item.group && (
+            {group && (
               <Flex direction="row" gap="1" className="items-center">
                 <GroupIcon />
-                <Text size="2">{item.group}</Text>
+                {group.map((g, i) => (
+                  <Text size="2" key={i}>
+                    {`${g}${i === group.length - 1 ? "" : " / "}`}
+                  </Text>
+                ))}
               </Flex>
             )}
             <Separator orientation="vertical" />
             {LangIcon && (
               <Flex direction="row" gap="1" className="items-center">
                 <LangIcon size={15} />
-                <Text size="2">{item.language}</Text>
+                <Text size="2">{language}</Text>
               </Flex>
             )}
           </Flex>
@@ -87,7 +104,7 @@ export default function ItemCard({ item, onTagClick }: ItemCardProps) {
           )}
           {item.tags && (
             <Flex direction="row" gap="2" wrap="wrap">
-              {item.tags.map((t, i) => (
+              {tags.map((t, i) => (
                 <Badge
                   className="cursor-pointer"
                   onClick={() => handleTagClick(t)}

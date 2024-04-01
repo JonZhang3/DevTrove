@@ -22,8 +22,14 @@ export type CountResult = {
  *
  * @category Array
  */
-export function count(array: Array<string>): CountResult {
+export function count(
+  array: Array<string>,
+  filter?: (value: string) => boolean
+): CountResult {
   return array.reduce((acc, item) => {
+    if (filter && !filter(item)) {
+      return acc;
+    }
     if (!acc[item]) {
       acc[item] = 0;
     }

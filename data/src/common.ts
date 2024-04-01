@@ -60,6 +60,7 @@ export const groups = [
   "DevOps",
   "Database",
   "BigData",
+  "AI",
   "Tool",
 ] as const;
 
@@ -105,5 +106,9 @@ export const tags = [
   "Visualization",
   "SQL",
   "Database",
-  "ORM"
+  "ORM",
+  "Framework",
+  "Application",
+  "Open Source",
+  "Close Source",
 ] as const;
