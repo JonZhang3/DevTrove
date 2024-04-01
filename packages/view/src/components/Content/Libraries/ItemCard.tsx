@@ -13,7 +13,7 @@ import { ArrowRightIcon, PersonIcon } from "@radix-ui/react-icons";
 import type { LibraryItemType } from "data";
 import { string } from "@/utils";
 import { GroupIcon } from "@/icons";
-import { langWithIcons, groups, languages } from "data";
+import { langWithIcons, groups, Group, languages, Language } from "data";
 import ExtraCode from "./ExtraCode";
 import Homepage from "./Homepage";
 import ExtraShare from "./ExtraShare";
@@ -33,9 +33,9 @@ export default function ItemCard({ item, onTagClick }: ItemCardProps) {
   let language = "";
   const tags: Array<string> = [];
   item.tags.forEach((tag) => {
-    if (groups.includes(tag)) {
+    if (groups.includes(tag as Group)) {
       group.push(tag);
-    } else if (languages.includes(tag)) {
+    } else if (languages.includes(tag as Language)) {
       language = tag;
     } else {
       tags.push(tag);

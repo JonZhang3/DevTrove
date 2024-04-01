@@ -18,7 +18,7 @@ export interface LibraryItemType {
   source?: "READED" | "UNREAD";
   package?: "npm" | "maven";
   code?: string;
-  tags: Array<Tag & Group & Language>;
+  tags: Array<Tag | Group | Language>;
   articles?: Array<string>;
   notes?: Array<string>;
   [key: string]: any;
